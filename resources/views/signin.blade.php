@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Admin - Tru Tiên Việt Nam! | </title>
+    <title>Admin - Age of Chaos </title>
 
     <!-- Bootstrap -->
     <link href="/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
