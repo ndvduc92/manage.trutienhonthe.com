@@ -288,6 +288,11 @@ class HomeController extends Controller
         return view("mail.add", ["users" => $users]);
     }
 
+    public function ssh()
+    {
+        return view("ssh");
+    }
+
     public function postAddMail(Request $request)
     {
         $validated = $request->validate([

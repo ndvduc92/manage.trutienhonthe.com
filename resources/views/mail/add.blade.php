@@ -76,6 +76,16 @@
                             </div>
                         </div>
                         <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align">Trạng thái vật phẩm<span
+                                class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <select name="bind" id="" class="form-control">
+                                    <option value="19">Khóa</option>
+                                    <option value="0">Không Khóa</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Mô tả
                             </label>
                             <div class="col-md-6 col-sm-6 ">

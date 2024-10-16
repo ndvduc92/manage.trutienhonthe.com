@@ -29,10 +29,12 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Giftcode</th>
+                                            <th>Vật phẩm</th>
+                                            <th>Loại</th>
+                                            <th>Tài Khoản</th>
                                             <th>Ngày hết hạn</th>
-                                            <th>ID Vật Phẩm</th>
-                                            <th>Phần thưởng</th>
-                                            <th>Số lượng đã dùng</th>
+                                            <th>Lượt dùng</th>
+                                            <th>Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -40,11 +42,48 @@
                                         <tr>
                                             <td>{{ $loop->index + 1}}</td>
                                             <td>{{$item->giftcode}}</td>
-                                            <td>{{\Carbon\Carbon::parse($item->expired)->format("d/m/Y")}}</td>
-                                            <td>{{$item->itemid}}</td>
-                                            <td>{{$item->award}}</td>
-                                            <td>{{$item->count }}
+                                            <td>
+                                                <ul>
+                                                    @foreach ($item->items as $it)
+                                                    <li>{{$it->quantity}} cái {{$it->name}} ({{$it->bind == "19" ? "Khóa" : "Không khóa"}})</li>
+                                                    @endforeach
+                                                    
+                                                </ul>
                                             </td>
+                                            <td>{{ \App\Models\Giftcode::TYPES[$item->type]}}</td>
+                                            <th>
+                                                @if($item->type =="account")
+                                                <p>
+                                                    <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#collapseExample{{$item->id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                      Danh sách
+                                                    </a>
+                                                  </p>
+                                                  <div class="collapse" id="collapseExample{{$item->id}}">
+                                                    <div class="card card-body">
+                                                        <ul>
+                                                            @foreach ($item->only_users as $item2)
+                                                            <li>
+                                                                {{$item2->user->username}} ({{"AOC".$item2->user->userid}}) 
+                                                                <a href="/giftcodes/{{$item->id}}/accounts/{{$item2->user_id}}/delete" class="btn btn-sm btn-danger">Xóa</a>
+                                                            </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                  </div>
+                                                
+                                                    
+                                                @else
+                                                    -------
+                                                @endif
+                                            </th>
+                                            <td>{{\Carbon\Carbon::parse($item->expired)->format("d/m/Y")}}</td>
+                                            <td>{{$item->count }}</td>
+                                            <th>
+                                                <a class="btn btn-sm btn-success" href="/giftcodes/{{$item->id}}/items">Vật phẩm</a>
+                                                @if ($item->type == "account")
+                                                <a class="btn btn-sm btn-danger" href="/giftcodes/{{$item->id}}/accounts">Gắn Tài Khoản</a>
+                                                @endif
+                                            </th>
 
                                         </tr>
                                         @endforeach

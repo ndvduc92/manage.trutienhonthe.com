@@ -30,7 +30,6 @@
                                             <th>Tên tài khoản</th>
                                             <th>ID nhân vật</th>
                                             <th>ID vật phẩm</th>
-                                            <th>Số lượng</th>
                                             <th>Mô tả</th>
                                             <th>Người gửi</th>
                                             <th>Thời gian gửi</th>
@@ -40,10 +39,9 @@
                                         @foreach ($mails as $item)
                                         <tr>
                                             <td>{{ $loop->index + 1}}</td>
-                                            <td>{{$item->receive ? $item->receive->username : ""}}</td>
-                                            <td>{{$item->char_id }}</td>
-                                            <td>{{$item->itemid }}</td>
-                                            <td>{{$item->quantity}}</td>
+                                            <td>{{$item->char->user->username }}</td>
+                                            <td>{{$item->char->name }} ({{$item->char_id }})</td>
+                                            <td>{{$item->itemid }} ({{$item->quantity}} cái)</td>
                                             <td>{{$item->description }}
                                             <td>{{$item->sender->username }}
                                             <td>{{\Carbon\Carbon::parse($item->expired)->format("d/m/Y H:i:s")}}

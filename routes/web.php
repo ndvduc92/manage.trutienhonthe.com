@@ -11,6 +11,7 @@ use App\Http\Controllers\DepositController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\GuildController;
 use App\Http\Controllers\WarController;
+use App\Http\Controllers\ManagerSpinController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,7 +58,17 @@ Route::group(["middleware" => "auth"], function () {
 	Route::group(["prefix" => "giftcodes"], function () {
 		Route::get('/', [GiftcodeController::class, 'index']);
 		Route::get('/add', [GiftcodeController::class, 'create']);
+
+		Route::get('/{id}/items', [GiftcodeController::class, 'editItems']);
+		Route::post('/{id}/update', [GiftcodeController::class, 'update']);
+		Route::post('/{id}/items', [GiftcodeController::class, 'updateItems']);
 		Route::post('/add', [GiftcodeController::class, 'store']);
+
+		Route::get('/{id}/accounts', [GiftcodeController::class, 'editAccounts']);
+		Route::post('/{id}/update', [GiftcodeController::class, 'update']);
+		Route::post('/{id}/accounts', [GiftcodeController::class, 'updateAccounts']);
+
+		Route::get('/{id}/accounts/{user_id}/delete', [GiftcodeController::class, 'deleteAccount']);
 	});
 
 	Route::group(["prefix" => "shops"], function () {
@@ -105,6 +116,11 @@ Route::group(["middleware" => "auth"], function () {
 	Route::post('/war', [WarController::class, 'postWar']);
 
 	Route::post('/upload/image', [PostController::class, 'upload'])->name("image.upload");
+
+	Route::get('/ssh', [HomeController::class, 'ssh']);
+
+	Route::resource('manager-spins', ManagerSpinController::class);
+	
 });
 
 

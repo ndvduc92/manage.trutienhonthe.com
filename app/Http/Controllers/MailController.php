@@ -19,7 +19,7 @@ class MailController extends Controller
 {
     public function index()
     {
-        $mails = Mail::latest()->get();
+        $mails = Mail::with("char")->latest()->get();
         return view("mail.index", ["mails" => $mails]);
     }
 
@@ -54,6 +54,7 @@ class MailController extends Controller
                 "receiver" => $request->char_id,
                 "itemid" => $request->itemid,
                 "count" => $request->quantity,
+                "proctype"=> $request->bind
             ]]);
             $item = new Mail;
             $item->char_id = $request->char_id;
@@ -97,6 +98,7 @@ class MailController extends Controller
                     "receiver" => $char,
                     "itemid" => $request->itemid,
                     "count" => $request->quantity,
+                    "proctype"=> $request->bind
                 ]]);
                 $item = new Mail;
                 $item->char_id = $char;

@@ -35,15 +35,22 @@
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">ID Vật Phẩm</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align">Loại hình giftcode</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="number" name="itemid" class="form-control">
+                                <select class="form-control" name="type">
+                                    @foreach (\App\Models\Giftcode::TYPES as $key => $value)
+                                        <option
+                                            value="{{ $key }}" 
+                                        >{{ $value }}</option>
+                                    @endforeach
+
+                                </select>
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Phần thưởng</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align">Cấp VIP (bỏ qua nếu không phải VIP)</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="text" name="award" class="form-control">
+                                <input type="number" name="viplevel" class="form-control">
                             </div>
                         </div>
                         <div class="item form-group">
@@ -53,13 +60,6 @@
                             <div class="col-md-6 col-sm-6 ">
                                 <input name="expired" class="form-control" placeholder="dd-mm-yyyy"
                                     type="date" required="required">
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align"></label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <p>*Lưu ý: Nếu chọn tỉ lệ thì giá trị có thể là 2, 3... còn nếu chọn phần trăm thì giá trị là bao nhiêu phần trăm</p>
-                                <p>Không được trùng khoảng thời gian khuyến mãi</p>
                             </div>
                         </div>
                         <div class="ln_solid"></div>

@@ -9,9 +9,8 @@ class Mail extends Model
 {
     use HasFactory;
 
-
-    public function receive() {
-        return $this->belongsTo(User::class, 'receiver', 'id');
+    public function char() {
+        return $this->belongsTo(Char::class, "char_id", "char_id");
     }
 
     public function sender() {
