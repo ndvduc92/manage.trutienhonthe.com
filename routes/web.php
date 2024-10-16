@@ -12,6 +12,8 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\GuildController;
 use App\Http\Controllers\WarController;
 use App\Http\Controllers\ManagerSpinController;
+
+use App\Http\Controllers\WheelController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -120,6 +122,16 @@ Route::group(["middleware" => "auth"], function () {
 	Route::get('/ssh', [HomeController::class, 'ssh']);
 
 	Route::resource('manager-spins', ManagerSpinController::class);
+
+
+	Route::group(["prefix" => "wheels"], function () {
+		Route::get('/', [WheelController::class, 'index']);
+		Route::get('/add', [WheelController::class, 'create']);
+		Route::post('/add', [WheelController::class, 'store']);
+		Route::post('/{id}/update', [WheelController::class, 'update']);
+		Route::get('/{id}/items', [WheelController::class, 'editItems']);
+		Route::post('/{id}/items', [WheelController::class, 'updateItems']);
+	});
 	
 });
 
