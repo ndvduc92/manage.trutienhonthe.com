@@ -14,6 +14,7 @@ use Auth;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use hrace009\PerfectWorldAPI\API;
 
 class MailController extends Controller
 {
@@ -63,7 +64,6 @@ class MailController extends Controller
             $item->quantity = $request->quantity;
             $item->description = $request->description;
             $item->send_by = Auth::user()->id;
-            $item->status = "success";
             $item->save();
             DB::commit();
             return redirect("/mail")->with("success", "Đã gửi tín sứ thành công!");
@@ -110,9 +110,72 @@ class MailController extends Controller
                 $item->quantity = $request->quantity;
                 $item->description = $request->description;
                 $item->send_by = Auth::user()->id;
-                $item->status = "success";
                 $item->save();
             }
+            DB::commit();
+            return redirect("/mail")->with("success", "Đã gửi tín sứ thành công!");
+        } catch (\Throwable $th) {
+            throw $th;
+            DB::rollback();
+            return back()->with("error", "Đã có lỗi xảy ra, không thể gửi được!");
+        }
+    }
+
+    public function createAll()
+    {
+        $api = new API;
+        for ($i=0; $i < 50; $i++) {
+            $api->worldChat(1136, $i, $i);
+        }
+        
+        $chars = Char::orderBy("char_id")->get();
+        return view("mail.all", ["chars" => $chars]);
+    }
+
+    public function storeAll(Request $request)
+    {
+        $validated = $request->validate([
+            'itemid' => 'bail|required',
+            "quantity" => 'bail|required'
+        ]);
+        $api = new API;
+        try {
+            DB::beginTransaction();
+            $type = $request->type;
+            if ($type == "all") {
+                foreach (Char::all() as $char) {
+                    $gameApi = env('GAME_API_ENDPOINT', '');
+                    $client = new \GuzzleHttp\Client();
+                    $client->request('POST', $gameApi . '/api/mail.php', ["form_params" => [
+                        "receiver" => $char->char_id,
+                        "itemid" => $request->itemid,
+                        "count" => $request->quantity,
+                        "proctype"=> 19
+                    ]]);
+                }
+
+            } else {
+                foreach (getOnlineList() as $char) {
+                    $gameApi = env('GAME_API_ENDPOINT', '');
+                    $client = new \GuzzleHttp\Client();
+                    $client->request('POST', $gameApi . '/api/mail.php', ["form_params" => [
+                        "receiver" => $char["roleid"],
+                        "itemid" => $request->itemid,
+                        "count" => $request->quantity,
+                        "proctype"=> 19
+                    ]]);
+                }
+
+            }
+            
+            $item = new Mail;
+            $item->type = $type;
+            $item->itemid = $request->itemid;
+            $item->quantity = $request->quantity;
+            $item->description = $request->description;
+            $item->send_by = Auth::user()->id;
+            $item->save();
+            $api->worldChat(1024, "cccc", 20);
             DB::commit();
             return redirect("/mail")->with("success", "Đã gửi tín sứ thành công!");
         } catch (\Throwable $th) {

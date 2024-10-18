@@ -111,6 +111,8 @@ Route::group(["middleware" => "auth"], function () {
 		Route::post('/add', [MailController::class, 'store']);
 		Route::get('/add_fast', [MailController::class, 'createFast']);
 		Route::post('/add_fast', [MailController::class, 'storeFast']);
+		Route::get('/add_all', [MailController::class, 'createAll']);
+		Route::post('/add_all', [MailController::class, 'storeAll']);
 	});
 
 	Route::get('/revenue', [DepositController::class, 'revenue']);

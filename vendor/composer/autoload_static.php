@@ -39,12 +39,17 @@ class ComposerStaticInit08bc534956feddf6a115342e67780ffd
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '320163ac6b93aebe3dc25b60a0533d56' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/helpers.php',
         '0b47d6d4a00ca9112ba3953b49e7c9a4' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/helper.php',
+        'b4e3f29b106af37a2bb239f73cdf68c7' => __DIR__ . '/../..' . '/app/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'v' => 
         array (
             'voku\\' => 5,
+        ),
+        'h' => 
+        array (
+            'hrace009\\ConfigWriter\\' => 22,
         ),
         'Y' => 
         array (
@@ -189,6 +194,10 @@ class ComposerStaticInit08bc534956feddf6a115342e67780ffd
         'voku\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
+        ),
+        'hrace009\\ConfigWriter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hrace009/config-writer/src',
         ),
         'Yajra\\DataTables\\' => 
         array (
@@ -544,6 +553,16 @@ class ComposerStaticInit08bc534956feddf6a115342e67780ffd
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'h' => 
+        array (
+            'hrace009\\PerfectWorldAPI' => 
+            array (
+                0 => __DIR__ . '/..' . '/hrace009/perfect-world-api/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -560,6 +579,7 @@ class ComposerStaticInit08bc534956feddf6a115342e67780ffd
         'App\\Http\\Controllers\\SpinController' => __DIR__ . '/../..' . '/app/Http/Controllers/SpinController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Controllers\\WarController' => __DIR__ . '/../..' . '/app/Http/Controllers/WarController.php',
+        'App\\Http\\Controllers\\WheelController' => __DIR__ . '/../..' . '/app/Http/Controllers/WheelController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -574,6 +594,8 @@ class ComposerStaticInit08bc534956feddf6a115342e67780ffd
         'App\\Models\\Char' => __DIR__ . '/../..' . '/app/Models/Char.php',
         'App\\Models\\Deposit' => __DIR__ . '/../..' . '/app/Models/Deposit.php',
         'App\\Models\\Giftcode' => __DIR__ . '/../..' . '/app/Models/Giftcode.php',
+        'App\\Models\\GiftcodeItem' => __DIR__ . '/../..' . '/app/Models/GiftcodeItem.php',
+        'App\\Models\\GiftcodeOnlyUser' => __DIR__ . '/../..' . '/app/Models/GiftcodeOnlyUser.php',
         'App\\Models\\GiftcodeUser' => __DIR__ . '/../..' . '/app/Models/GiftcodeUser.php',
         'App\\Models\\Guild' => __DIR__ . '/../..' . '/app/Models/Guild.php',
         'App\\Models\\GuildUser' => __DIR__ . '/../..' . '/app/Models/GuildUser.php',
@@ -586,6 +608,9 @@ class ComposerStaticInit08bc534956feddf6a115342e67780ffd
         'App\\Models\\Spin' => __DIR__ . '/../..' . '/app/Models/Spin.php',
         'App\\Models\\Transaction' => __DIR__ . '/../..' . '/app/Models/Transaction.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\Wheel' => __DIR__ . '/../..' . '/app/Models/Wheel.php',
+        'App\\Models\\WheelItem' => __DIR__ . '/../..' . '/app/Models/WheelItem.php',
+        'App\\Models\\WheelUser' => __DIR__ . '/../..' . '/app/Models/WheelUser.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -6668,6 +6693,13 @@ class ComposerStaticInit08bc534956feddf6a115342e67780ffd
         'Yajra\\DataTables\\Utilities\\Config' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Utilities/Config.php',
         'Yajra\\DataTables\\Utilities\\Helper' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Utilities/Helper.php',
         'Yajra\\DataTables\\Utilities\\Request' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Utilities/Request.php',
+        'hrace009\\ConfigWriter\\DataWriter\\FileWriter' => __DIR__ . '/..' . '/hrace009/config-writer/src/DataWriter/FileWriter.php',
+        'hrace009\\ConfigWriter\\DataWriter\\Rewrite' => __DIR__ . '/..' . '/hrace009/config-writer/src/DataWriter/Rewrite.php',
+        'hrace009\\ConfigWriter\\Repository' => __DIR__ . '/..' . '/hrace009/config-writer/src/Repository.php',
+        'hrace009\\ConfigWriter\\ServiceProvider' => __DIR__ . '/..' . '/hrace009/config-writer/src/ServiceProvider.php',
+        'hrace009\\PerfectWorldAPI\\API' => __DIR__ . '/..' . '/hrace009/perfect-world-api/src/hrace009/PerfectWorldAPI/API.php',
+        'hrace009\\PerfectWorldAPI\\Gamed' => __DIR__ . '/..' . '/hrace009/perfect-world-api/src/hrace009/PerfectWorldAPI/Gamed.php',
+        'hrace009\\PerfectWorldAPI\\ServiceProvider' => __DIR__ . '/..' . '/hrace009/perfect-world-api/src/hrace009/PerfectWorldAPI/ServiceProvider.php',
         'voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',
     );
 
@@ -6676,6 +6708,7 @@ class ComposerStaticInit08bc534956feddf6a115342e67780ffd
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit08bc534956feddf6a115342e67780ffd::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit08bc534956feddf6a115342e67780ffd::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit08bc534956feddf6a115342e67780ffd::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit08bc534956feddf6a115342e67780ffd::$classMap;
 
         }, null, ClassLoader::class);

@@ -45,7 +45,7 @@
                                             <td>{{\App\Models\Wheel::TYPES[$item->type]}}</td>
                                             <td>{{$item->viplevel}}</td>
                                             <td>{{$item->coin_amount}}</td>
-                                            <td>{{$item->number_of_times}}</td>
+                                            <td>{{$item->num_of_times}}</td>
                                             <td>{{$item->status}}</td>
                                             <th>
                                                 <a class="btn btn-sm btn-success" href="/wheels/{{$item->id}}/items">Cài đặt</a>

@@ -9,8 +9,14 @@ class Mail extends Model
 {
     use HasFactory;
 
+    public const TYPES = [
+        'player' => "Theo nhân vật",
+        'all' => "Toàn bộ máy chủ",
+        'online' => "Thành viên online"
+    ];
+
     public function char() {
-        return $this->belongsTo(Char::class, "char_id", "char_id");
+        return $this->belongsTo(Char::class, "char_id", "char_id")->withDefault(['name' => '---', 'char_id' => '---']);
     }
 
     public function sender() {

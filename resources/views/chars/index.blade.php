@@ -4,23 +4,12 @@
     <div class="page-title">
         <div class="title_left">
             <h3>Danh sách nhân vật</h3>
-                <i style="color:rgb(206, 201, 201)" class="fa fa-check-circle"></i> Nhân vật cần chỉnh sửa lỗi hiển thị tên.
-                <br>
             </div>
         <br>
     </div>
     <br>
-    @php
-    function specialChars($str) {
-        return preg_match('/[^a-zA-Z0-9\.]/', $str) > 0;
-    }
-    @endphp
 
     <div class="clearfix"></div>
-    <br>
-    <a href="/chars" type="button" class="btn btn-sm btn-primary">Toàn bộ</a>
-    <a href="/chars?need_change=true" type="button" class="btn btn-sm btn-success">Chỉ lỗi tên</a>
-    <br>
     <br>
     <div class="row">
         <div class="col-md-12 col-sm-12 ">

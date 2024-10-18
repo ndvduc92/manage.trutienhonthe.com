@@ -8,7 +8,9 @@
   </div>
 
   <div class="clearfix"></div>
-
+  <br>
+    <a href="/deposits/add" type="button" class="btn btn-sm btn-danger">Tạo lệnh tay bổ sung</a>
+    <br>
   <div class="row">
     <div class="col-md-12 col-sm-12 ">
       <div class="x_panel">
@@ -38,6 +40,7 @@
                   <thead>
                     <tr>
                       <th>#</th>
+                      <th>Hình thức</th>
                       <th>Tài khoản</th>
                       <th>Giá tiền gốc</th>
                       <th>Giá tiền (KM)</th>
@@ -49,6 +52,7 @@
                     @foreach ($deposits as $item)
                     <tr>
                       <th>{{ $loop->index + 1}}</th>
+                      <td>{{ \App\Models\Deposit::TYPES[$item->type] }}</td>
                       <td>{{$item->user->username}}</td>
                       <td>{{number_format($item->amount)}}</td>
                       <td>{{number_format($item->amount_promotion)}}</td>

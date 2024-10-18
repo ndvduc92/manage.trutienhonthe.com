@@ -3,7 +3,7 @@
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3>Thêm mới khuyến mãi</h3>
+            <h3>Tạo lệnh tay bổ sung</h3>
         </div>
     </div>
 
@@ -19,32 +19,31 @@
                         <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">User</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="number" name="user_id" class="form-control">
+                                <select class="select2_single form-control" tabindex="-1" name="user_id">
+                                        <option value="">--Chọn tài khoản hoặc để trống--</option>
+                                        @foreach ($users as $item)
+                                            <option value="{{ $item->id }}">{{ $item->username }} (AOC{{ $item->userid }})</option>
+                                        @endforeach
+
+                                    </select>
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Giá trị</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align">Số tiền</label>
                             <div class="col-md-6 col-sm-6 ">
                                 <input type="number" name="amount" class="form-control">
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">KM</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align">Số tiền sau khi KM</label>
                             <div class="col-md-6 col-sm-6 ">
                                 <input type="number" name="amount_promotion" class="form-control">
-                            </div>
-                        </div>
-                        <div class="item form-group" style="display: none">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Status</label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <input name="amount_promotion" class="form-control" value="on">
                             </div>
                         </div>
                         <div class="ln_solid"></div>
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
                                 <a href="/promotions" class="btn btn-danger" type="button">Huỷ</a>
-                                <button class="btn btn-primary" type="reset">Reset</button>
                                 <button type="submit" class="btn btn-success">Thêm</button>
                             </div>
                         </div>
