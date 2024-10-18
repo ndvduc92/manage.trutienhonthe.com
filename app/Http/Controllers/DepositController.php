@@ -46,6 +46,9 @@ class DepositController extends Controller
             $item->user_id = $request->user_id;
             $item->amount = $request->amount;
             $item->amount_promotion = $request->amount_promotion;
+            $user = User::find($request->user_id);
+            $user->balance = $user->balance + $request->amount_promotion;
+            $user->save();
             $item->status = "success";
             $item->processing_time = date("Y-m-d H:i:s");
             $item->processing_user = Auth::user()->id;
