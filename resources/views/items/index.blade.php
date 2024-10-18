@@ -74,7 +74,7 @@
 
         function format(state) {
             if (!state.id) return state.text;
-            return '<img src="' + state?.data + '" title="Click for the larger version." />' + state.text;
+            return `<img src="${state?.data}" title="Click for the larger version." />${state.text} (ID: ${state.itemid})` ;
         }
     </script>
 @endsection
