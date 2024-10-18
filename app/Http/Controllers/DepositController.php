@@ -50,6 +50,7 @@ class DepositController extends Controller
             $user->balance = $user->balance + $request->amount_promotion;
             $user->save();
             $item->status = "success";
+            $item->type = "manual";
             $item->processing_time = date("Y-m-d H:i:s");
             $item->processing_user = Auth::user()->id;
             $item->save();
