@@ -165,7 +165,7 @@ class MailController extends Controller
                         "proctype"=> 19
                     ]]);
                 }
-
+                $api->worldChat(1024, "Phần quà nhỏ NPH Hỗn Thế gởi tới tất cả người chơi đang online. Cảm ơn các bạn đã luôn đồng hành cùng chúng tôi", 20);
             }
             
             $item = new Mail;
@@ -175,7 +175,6 @@ class MailController extends Controller
             $item->description = $request->description;
             $item->send_by = Auth::user()->id;
             $item->save();
-            $api->worldChat(1024, "cccc", 20);
             DB::commit();
             return redirect("/mail")->with("success", "Đã gửi tín sứ thành công!");
         } catch (\Throwable $th) {
