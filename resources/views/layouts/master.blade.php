@@ -10,7 +10,7 @@
   <link rel="icon" href="/assets/images/favicon.ico" type="image/ico" />
 
   <title>Admin Control Panel</title>
-
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Bootstrap -->
   <link href="/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
@@ -69,6 +69,8 @@
                 <li><a href="/promotions"><i class="fa fa-send"></i> Khuyến Mãi</a></li>
                 <li><a href="/posts"><i class="fa fa-edit"></i> Tin tức</a></li>
                 <li><a href="/wheels"><i class="fa fa-diamond"></i> Vòng quay may mắn</a></li>
+
+                <li><a href="/items"><i class="fa fa-th-list"></i> Search Item</a></li>
                 {{-- <li><a href="/guilds"><i class="fa fa-diamond"></i> Bang Hội</a></li> --}}
               </ul>
             </div>

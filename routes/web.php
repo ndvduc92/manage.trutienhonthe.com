@@ -14,6 +14,7 @@ use App\Http\Controllers\WarController;
 use App\Http\Controllers\ManagerSpinController;
 
 use App\Http\Controllers\WheelController;
+use App\Http\Controllers\ItemController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -133,6 +134,11 @@ Route::group(["middleware" => "auth"], function () {
 		Route::post('/{id}/update', [WheelController::class, 'update']);
 		Route::get('/{id}/items', [WheelController::class, 'editItems']);
 		Route::post('/{id}/items', [WheelController::class, 'updateItems']);
+	});
+
+	Route::group(["prefix" => "items"], function () {
+		Route::get('/', [ItemController::class, 'index']);
+		Route::get('/search', [ItemController::class, 'search']);
 	});
 	
 });
