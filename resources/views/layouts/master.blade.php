@@ -78,7 +78,7 @@
 
                                 <li><a href="/items"><i class="fa fa-th-list"></i> Search Item</a></li>
                                 <li><a href="/tools"><i class="fa fa-cog"></i> Công cụ</a></li>
-                                <li><a href="/remote" target="_blank"><i class="fa fa-desktop"></i> Truy cập máy chủ</a></li>
+                                <li><a href="/remote"><i class="fa fa-desktop"></i> Truy cập máy chủ</a></li>
                                 {{-- <li><a href="/guilds"><i class="fa fa-diamond"></i> Bang Hội</a></li> --}}
                             </ul>
                         </div>
