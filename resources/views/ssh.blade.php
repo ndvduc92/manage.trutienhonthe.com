@@ -1,120 +1,69 @@
 @extends('layouts.master')
 
 @section('content')
-<div id="container" class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Connect to server</div>
-                <div class="card-body">
-                    <div class="form-group row">
-                        <label for="name" class="col-md-4 col-form-label text-md-right">Decryption Password</label>
+    <div id="container" class="container">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Một số lệnh quản lý server</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                            aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Settings 1</a>
+                            <a class="dropdown-item" href="#">Settings 2</a>
+                        </div>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
 
-                        <div class="col-md-6">
-                            <input id="decryptpassword" type="password" class="form-control" name="decryptpassword" value="" autocomplete="none" autofocus>
-                        </div>
-                    </div>
-                    <div class="form-group row mb-0">
-                        <div class="col-md-6 offset-md-4">
-                            <button type="button" onclick="decrypt()" class="btn btn-primary">Connect</button>
-                        </div>
+                <div class="bs-example" data-example-id="simple-jumbotron">
+                    <div class="" style="padding: 2rem 1rem; color:black; font-size: 16px">
+                        <i class="glyphicon glyphicon-hand-right"></i> Đăng nhập vào server <a href="/ssh" target="_blank">TẠI ĐÂY</a> <br>
+                        <i class="glyphicon glyphicon-hand-right"></i> Một số lệnh chính:<br>
+                        + Truy cập vào menu, gõ lệnh:
+                        <div class="codeBlock">./menu.sh</div>
+                        &nbsp&nbsp&nbsp&nbspvà nhấn phím số 2 để bắt đầu chạy Channel 1 với full map và phụ bản (Ngoại trừ Lăng Tiêu Thành và map War chạy riêng)<br>
+                        + Lưu ý: Chờ từ 5-10p để server có thể khởi động xong và hiện thông báo chạy thành công.<br>
+                        + Nhấn phím số 2 để chạy map Lăng Tiêu Thành và phím 3 để chạy map war Bang Hội. <br>
+                        + Nhấn phím 12 để tắt server <strong style="color: red">(Cẩn thận - chỉ tắt khi bảo trì)</strong><br>
+                        + Nhấn phím 0 để thoát khỏi menu
+
+                        <br>
+                        <br>
+                        <i class="glyphicon glyphicon-hand-right"></i> Chạy thêm nhiều kênh:<br>
+                        + Sau khi thoát khỏi Menu, gõ lệnh:
+                        <div class="codeBlock">./channel</div>
+                        + Chạy kênh nào thì nhấn phím số ấy, ví dụ nhấn phím số 2 để chạy kênh 2, số 3 để chạy kênh 3... chờ khi kênh này khởi động xong rồi mới chạy kênh khác.<br>
+
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
-</div>
-<div name="idconn" id="idconn"></div>
-<div id="terminal" style="width:100%; height:90vh"></div>
-    <script>
-    var resizeInterval;
-    var wSocket;
-    var password;
-    var idconnection = "<?= bin2hex(openssl_random_pseudo_bytes(12)) ?>";
-    var intervalId;
-
-    function connectServer() {
-        wSocket = new WebSocket("ws:localhost:24700");
-        term.open(document.getElementById('terminal'));
-
-        document.getElementById("container").style.display="none";
-        document.getElementById("terminal").style.visibility="visible";
-        document.getElementById("idconn").innerHTML = "Your id connection is " + idconnection;
-
-        var dataSend = {"auth":
-                        {
-                        "idconnection" : idconnection,
-                        "server":"103.57.221.103",
-                        "port":"24700",
-                        "user":"root",
-                        "password": "Vduc1992@",
-                        }
-                    };
-
-        term.fit();
-        term.focus();
-
-        wSocket.onopen = function (event) {
-            console.log("Socket Open");
-
-            term.attach(wSocket,false,false);
-            wSocket.send(JSON.stringify(dataSend));
-            intervalId = window.setInterval(function(){
-                wSocket.send(JSON.stringify({"refresh":""}));
-            }, 700);
-        };
-
-        wSocket.onerror = function (event){
-            alert("Connection Closed");
-            term.detach(wSocket);
-            window.clearInterval(intervalId);
-        };
-
-        term.on('data', function (data) {
-            var dataSend = {"data":{"data":data}};
-            wSocket.send(JSON.stringify(dataSend));
-            //Xtermjs with attach dont print zero, so i force. Need to fix it :(
-            if (data=="0"){
-            term.write(data);
-            }
-        });
-    }
-
-    async function decrypt() {
-        passwordDecrypt = document.getElementById("decryptpassword").value;
-        const pwUtf8 = new TextEncoder().encode(passwordDecrypt);                                  // encode password as UTF-8
-        const pwHash = await crypto.subtle.digest('SHA-256', pwUtf8);                       // hash the password
-
-        ciphertext = "Vduc1992@";
-        const iv = ciphertext.slice(0,24).match(/.{2}/g).map(byte => parseInt(byte, 16));   // get iv from ciphertext
-
-        const alg = { name: 'AES-GCM', iv: new Uint8Array(iv) };                            // specify algorithm to use
-
-        const key = await crypto.subtle.importKey('raw', pwHash, alg, false, ['decrypt']);  // use pw to generate key
-
-        const ctStr = atob(ciphertext.slice(24));                                           // decode base64 ciphertext
-        const ctUint8 = new Uint8Array(ctStr.match(/[\s\S]/g).map(ch => ch.charCodeAt(0))); // ciphertext as Uint8Array
-
-        plaintext = "";
-        try {   
-            const plainBuffer = await crypto.subtle.decrypt(alg, key, ctUint8);
-            password = new TextDecoder().decode(plainBuffer);                            // decode password from UTF-8
-            connectServer();
-        } catch(error) {
-            alert("Decrypt Password Incorrect");
-        }
-    }
-
-    //Execute resize with a timeout
-    window.onresize = function() {
-        clearTimeout(resizeInterval);
-        resizeInterval = setTimeout(resize, 400);
-    }
-    // Recalculates the terminal Columns / Rows and sends new size to SSH server + xtermjs
-    function resize() {
-        if (term) {
-        term.fit()
-        }
-    }
-    </script>
+    <style>
+        .codeBlock {
+    position: relative;
+    display: block;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: 15px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-left: 5px solid #09f;
+    border-radius: 4px;
+    font-family: Consolas, Courier New, monospace;
+}
+    </style>
 @endsection
