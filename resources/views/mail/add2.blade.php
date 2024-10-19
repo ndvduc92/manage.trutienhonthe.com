@@ -8,7 +8,7 @@
         </div>
 
         <div class="clearfix"></div>
-
+        @include('items.widget')
         <div class="row">
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
@@ -84,32 +84,6 @@
                             </div>
 
                         </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12 col-sm-12 ">
-                <div class="x_panel">
-                    <div class="x_content">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>ID vật phẩm</th>
-                                    <th>Tên vật phẩm</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>88122</td>
-                                    <td>Giftcode fan cứng</td>
-                                </tr>
-
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

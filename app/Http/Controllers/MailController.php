@@ -20,7 +20,7 @@ class MailController extends Controller
 {
     public function index()
     {
-        $mails = Mail::with("char")->latest()->get();
+        $mails = Mail::with("char", "item")->latest()->get();
         return view("mail.index", ["mails" => $mails]);
     }
 
@@ -165,8 +165,8 @@ class MailController extends Controller
                         "proctype"=> 19
                     ]]);
                 }
-                $api->worldChat(1024, "Phần quà nhỏ NPH Hỗn Thế gởi tới tất cả người chơi đang online. Cảm ơn các bạn đã luôn đồng hành cùng chúng tôi", 20);
             }
+            $api->worldChat(1280, "Phần quà nhỏ NPH Hỗn Thế gởi tới tất cả người chơi đang online. Cảm ơn các bạn đã luôn đồng hành cùng chúng tôi", 20);
             
             $item = new Mail;
             $item->type = $type;

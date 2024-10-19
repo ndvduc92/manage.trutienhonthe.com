@@ -13,4 +13,8 @@ class GiftcodeItem extends Model
     {
         return $this->belongsTo(Giftcode::class);
     }
+
+    public function item() {
+        return $this->belongsTo(Item::class, 'itemid', 'itemid')->withDefault(["name" => "Không xác định"]);;
+    }
 }

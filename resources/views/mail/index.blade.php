@@ -55,7 +55,7 @@
                                                             {{ $item->char->name }} ({{ $item->char_id }})
                                                         @endif
                                                     </td>
-                                                    <td>{{ $item->itemid }} ({{ $item->quantity }} cái)</td>
+                                                    <td><img src="{{ $item->item->image }}" alt="" srcset=""> {{ $item->item->name }} ({{ $item->quantity }} cái)</td>
                                                     <td>{{ $item->description }}
                                                     <td>{{ $item->sender->username }}
                                                     <td>{{ \Carbon\Carbon::parse($item->expired)->format('d/m/Y H:i:s') }}

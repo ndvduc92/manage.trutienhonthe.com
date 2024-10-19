@@ -3,29 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Item;
+use App\Models\Config;
+use hrace009\PerfectWorldAPI\API;
 
-class ItemController extends Controller
+class ConfigController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view("items.index", ["items" => []]);
+        $onlines = [];
+        $api = new API;
+        if(request()->type == "online") {
+            $onlines = getOnlines();
+        }
+        return view("configs.index", compact("onlines"));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function search()
+    public function create()
     {
-        $key = request()->key;
-        if (!request()->key || strlen(request()->key) < 3) {
-            return response()->json([]); 
-        }
-        $items = Item::where("name", 'like', '%'.$key.'%')->orWhere("itemid", $key)->orderBy("itemid")->get();
-        return response()->json($items);
+        //
     }
 
     /**

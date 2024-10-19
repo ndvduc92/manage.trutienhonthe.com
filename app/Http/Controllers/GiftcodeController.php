@@ -11,6 +11,7 @@ use App\Models\Mail;
 use App\Models\Promotion;
 use App\Models\User;
 use App\Models\Shop;
+use App\Models\Item;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -82,7 +83,7 @@ class GiftcodeController extends Controller
         $items = [];
         foreach ($request->id as $index => $idx) {
             array_push($items, [
-                "name" => $request->name[$index],
+                "name" => Item::where("itemid", $request->itemid[$index])->first()->name,
                 "itemid" => $request->itemid[$index],
                 "quantity" => $request->quantity[$index],
                 "bind" => $request->bind[$index],

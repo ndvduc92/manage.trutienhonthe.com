@@ -95,12 +95,14 @@
                         </form>
                         <div class="ln_solid"></div>
                         <h5 class="col-md-3 col-sm-3 ">Danh sách vật phẩm <span class="required">*</span></h5>
+                        @include('items.widget')
                         <form class="card-box" action="/wheels/{{ $wheel->id }}/items" method="POST">
                             @csrf
                             <table class="table" id="items_table">
                                 <thead>
                                     <tr>
                                         <th></th>
+                                        <th>Ảnh</th>
                                         <th>Tên vật phẩm</th>
                                         <th>ID vật phẩm</th>
                                         <th>Số lượng</th>
@@ -116,9 +118,12 @@
                                                         class="btn btn-danger btn-sm remove_item">Xóa</button>
                                                 </th>
                                                 <th>
+                                                    <img src="{{$item->item->image}}" alt="" srcset="">
+                                                </th>
+                                                <th>
                                                     <input type="hidden" value="{{ $item->id }}" name="id[]"
                                                         class="form-control">
-                                                    <input type="text" required value="{{ $item->name }}"
+                                                    <input type="text" disabled required value="{{ $item->name }}"
                                                         name="name[]" class="form-control">
                                                 </th>
                                                 <th><input required type="number" value="{{ $item->itemid }}"
@@ -141,9 +146,10 @@
                                         <tr class="first_item">
                                             <th><span role="button" class="btn btn-danger btn-sm remove_item">Xóa</button>
                                             </th>
+                                            <th></th>
                                             <th>
                                                 <input type="hidden" name="id[]" class="form-control">
-                                                <input required type="text" name="name[]" class="form-control">
+                                                <input disabled required type="text" name="name[]" class="form-control">
                                             </th>
                                             <th><input required type="number" name="itemid[]" class="form-control"></th>
                                             <th><input required type="number" name="quantity[]" class="form-control">
@@ -190,9 +196,10 @@
                 const el = `<tr class="first_item">
                                             <th><span role="button" class="btn btn-danger btn-sm remove_item">Xóa</button>
                                             </th>
+                                            <th></th>
                                             <th>
                                                 <input type="hidden" name="id[]" class="form-control">
-                                                <input required type="text" name="name[]" class="form-control">
+                                                <input disabled required type="text" name="name[]" class="form-control">
                                             </th>
                                             <th><input required type="number" name="itemid[]" class="form-control"></th>
                                             <th><input required type="number" name="quantity[]" class="form-control"></th>

@@ -22,4 +22,8 @@ class Mail extends Model
     public function sender() {
         return $this->belongsTo(User::class, 'send_by', 'id');
     }
+
+    public function item() {
+        return $this->belongsTo(Item::class, 'itemid', 'itemid')->withDefault(["name" => "Không xác định"]);;
+    }
 }

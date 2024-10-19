@@ -29,6 +29,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>ID vật phẩm</th>
+                                            <th>Hình Ảnh</th>
                                             <th>Tên vật phẩm</th>
                                             <th>Giá tiền (xu)</th>
                                             <th>Xếp chồng</th>
@@ -40,6 +41,7 @@
                                         <tr>
                                             <td>{{ $loop->index + 1}}</td>
                                             <td><a href="/shops/{{$item->id}}/edit">{{$item->itemid}}</a></td>
+                                            <td><img src="{{$item->item->image }}" alt="" srcset=""></td>
                                             <td>{{$item->name }}</td>
                                             <td>{{$item->price }}
                                             <td>{{$item->stack }}

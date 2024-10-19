@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Wheel;
 use App\Models\WheelItem;
 use App\Models\WheelUser;
+use App\Models\Item;
 
 class WheelController extends Controller
 {
@@ -77,10 +78,16 @@ class WheelController extends Controller
     {
         $wheel = Wheel::find($id);
         $items = [];
+        $items = $wheel->items->pluck("id")->toArray();
+        foreach($items as $item) {
+            if (!in_array(strval($item), $request->id)) {
+                WheelItem::find($item)->delete();
+            }
+        }
         foreach ($request->id as $index => $idx) {
             if ($idx) {
                 $it = WheelItem::find($idx);
-                $it->name = $request->name[$index];
+                $it->name = Item::where("itemid", $request->itemid[$index])->first()->name;
                 $it->itemid = $request->itemid[$index];
                 $it->quantity = $request->quantity[$index];
                 $it->ratio = $request->ratio[$index];
@@ -89,7 +96,7 @@ class WheelController extends Controller
                 $it->save();
             } else {
                 $r = new WheelItem;
-                $r->name = $request->name[$index];
+                $r->name = Item::where("itemid", $request->itemid[$index])->first()->name;
                 $r->itemid = $request->itemid[$index];
                 $r->quantity = $request->quantity[$index];
                 $r->ratio = $request->ratio[$index];

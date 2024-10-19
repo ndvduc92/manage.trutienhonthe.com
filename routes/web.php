@@ -15,6 +15,8 @@ use App\Http\Controllers\ManagerSpinController;
 
 use App\Http\Controllers\WheelController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\TradeController;
+use App\Http\Controllers\ConfigController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -140,7 +142,12 @@ Route::group(["middleware" => "auth"], function () {
 		Route::get('/', [ItemController::class, 'index']);
 		Route::get('/search', [ItemController::class, 'search']);
 	});
+
+	Route::group(["prefix" => "trades"], function () {
+		Route::get('/', [TradeController::class, 'index']);
+	});
 	
+	Route::get('/tools', [ConfigController::class, 'index']);
 });
 
 

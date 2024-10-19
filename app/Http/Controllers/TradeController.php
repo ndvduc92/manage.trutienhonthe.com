@@ -3,29 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Item;
+use App\Models\Trade;
+use App\Models\TradeItem;
 
-class ItemController extends Controller
+class TradeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view("items.index", ["items" => []]);
+        if (request()->fetch) {
+            $client = new \GuzzleHttp\Client();
+            $gameApi = "https://id.trutienhonthe.com/api/trades";
+            $response = $client->request("GET", $gameApi, []);
+            return redirect("/trades");
+        }
+        $trades = Trade::with("items")->get();
+        return view("trades.index", compact("trades"));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function search()
+    public function create()
     {
-        $key = request()->key;
-        if (!request()->key || strlen(request()->key) < 3) {
-            return response()->json([]); 
-        }
-        $items = Item::where("name", 'like', '%'.$key.'%')->orWhere("itemid", $key)->orderBy("itemid")->get();
-        return response()->json($items);
+        //
     }
 
     /**
