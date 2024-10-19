@@ -124,8 +124,6 @@ Route::group(["middleware" => "auth"], function () {
 
 	Route::post('/upload/image', [PostController::class, 'upload'])->name("image.upload");
 
-	Route::get('/ssh', [HomeController::class, 'ssh']);
-
 	Route::resource('manager-spins', ManagerSpinController::class);
 
 
