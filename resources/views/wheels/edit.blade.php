@@ -58,7 +58,7 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Cấp VIP (bỏ qua nếu không phải
                                     VIP)</label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input value="{{ $wheel->viplevel }}" type="number" name="viplevel"
+                                    <input value="{{ $wheel->viplevel }}" type="text" name="viplevel"
                                         class="form-control">
                                 </div>
                             </div>

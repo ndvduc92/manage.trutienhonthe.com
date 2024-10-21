@@ -56,7 +56,7 @@
                         <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Cấp VIP (bỏ qua nếu không phải VIP)</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="number" name="viplevel" class="form-control">
+                                <input type="text" name="viplevel" class="form-control">
                             </div>
                         </div>
                         <div class="item form-group">
