@@ -35,7 +35,7 @@ class ShopController extends Controller
             "price" => 'bail|required',
             "stack" => 'bail|required',
         ]);
-        if (Giftcode::where("itemid", $request->itemid)->first()) {
+        if (Shop::where("itemid", $request->itemid)->first()) {
             return redirect()->back()->with('error', 'Vật phẩm đã tồn tại.');
         }
         $item = new Shop;
@@ -62,7 +62,7 @@ class ShopController extends Controller
             "status" => 'bail|required',
             "stack" => 'bail|required',
         ]);
-        if (Giftcode::where("itemid", $request->itemid)->first()) {
+        if (Shop::where("itemid", $request->itemid)->whereNot("id", $id)->first()) {
             return redirect()->back()->with('error', 'Vật phẩm đã tồn tại.');
         }
         $item = Shop::find($id);

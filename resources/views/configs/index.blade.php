@@ -3,7 +3,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Công cụ Game</h3>
+                <h6 class="ml-2">Công cụ Game</h6>
             </div>
         </div>
 
@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="count">&nbsp</div>
     
-                                <h3>Danh sách online</h3>
+                                <h6 class="ml-2">Danh sách online</h6>
                             </div>
                         </a>
                         <a class="animated flipInY col-lg-3 col-md-3 col-sm-6 " href="/trades">
@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="count">&nbsp</div>
     
-                                <h3>Check giao dịch Game</h3>
+                                <h6 class="ml-2">Check giao dịch Game</h6>
                             </div>
                         </a>
                         <a class="animated flipInY col-lg-3 col-md-3 col-sm-6  " href="/items">
@@ -37,10 +37,43 @@
                                 </div>
                                 <div class="count">&nbsp</div>
     
-                                <h3>Tra cứu item</h3>
+                                <h6 class="ml-2">Tra cứu item</h6>
                             </div>
                         </a>
                     </div>
+                </div>
+
+                <div class="card-box table-responsive">
+                    <table id="datatable-buttons" class="table table-striped table-bordered"
+                        style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nhân vât</th>
+                                <th>Level</th>
+                                <th>Tọa độ X</th>
+                                <th>Tọa độ Y</th>
+                                <th>Tọa độ Z</th>
+                                <th>Map</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody>
+                            @foreach ($onlines as $user)
+                            <tr>
+                                <th>{{ $user["char_id"] }}</th>
+                                <th>{{ $user["name"] }}</th>
+                                <th>{{ $user["level"] }}</th>
+                                <th>{{ $user["posx"] }}</th>
+                                <th>{{ $user["posy"] }}</th>
+                                <th>{{ $user["posz"] }}</th>
+                                <th>{{ $user["worldtag"] }}</th>
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

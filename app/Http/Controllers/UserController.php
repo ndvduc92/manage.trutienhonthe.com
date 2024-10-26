@@ -12,6 +12,9 @@ class UserController extends Controller
     public function index()
     {
         $users = User::where("role", "member")->whereNotNull("main_id")->latest()->get();
+        if (request()->type == "all") {
+            $users = User::where("role", "member")->latest()->get();
+        }
         return view("users.index", ["users" => $users]);
     }
 

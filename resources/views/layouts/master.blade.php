@@ -172,7 +172,7 @@
             <!-- footer content -->
             <footer>
                 <div class="pull-right">
-                    TruTienVN - Hoạ Ảnh <a href="https://colorlib.com">Giáng Lâm</a>
+                    Zhuxian - Age <a href="/">of Chaos</a>
                 </div>
                 <div class="clearfix"></div>
             </footer>

@@ -34,7 +34,7 @@
                             </div>
                             <div class="count">&nbsp</div>
 
-                            <h3>Danh sách online</h3>
+                            <h6 class="ml-2">Danh sách online</h6>
                         </div>
                     </a>
                     <a class="animated flipInY col-lg-3 col-md-3 col-sm-6 " href="/trades">
@@ -43,7 +43,7 @@
                             </div>
                             <div class="count">&nbsp</div>
 
-                            <h3>Check giao dịch Game</h3>
+                            <h6 class="ml-2">Check giao dịch Game</h6>
                         </div>
                     </a>
                     <a class="animated flipInY col-lg-3 col-md-3 col-sm-6  " href="/items">
@@ -52,7 +52,7 @@
                             </div>
                             <div class="count">&nbsp</div>
 
-                            <h3>Tra cứu item</h3>
+                            <h6 class="ml-2">Tra cứu item</h6>
                         </div>
                     </a>
                 </div>

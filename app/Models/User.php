@@ -48,19 +48,28 @@ class User extends Authenticatable
         return "username";
     }
 
-    public function deposits() {
+    public function deposits()
+    {
         return $this->hasMany(Deposit::class);
     }
 
-    public function giftcodes() {
+    public function giftcodes()
+    {
         return $this->hasMany(GiftcodeUser::class);
     }
 
-    public function chars() {
+    public function chars()
+    {
         return Char::where("userid", $this->userid)->get();
     }
 
-    public function guild() {
+    public function main()
+    {
+        return $this->hasOne(Char::class, "char_id", "main_id");
+    }
+
+    public function guild()
+    {
         return $this->hasOne(Guild::class);
     }
 }
